@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BasisComponent_Example' do
+  pod 'BasisComponent', :path => '../'
+
+  target 'BasisComponent_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
