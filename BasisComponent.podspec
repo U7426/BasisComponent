@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.1.1'
-  s.summary          = 'A short description of BasisComponent.'
+  s.version          = '0.1.2'
+  s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
