@@ -1,4 +1,3 @@
-
 //
 //  UITableView+Extension.swift
 //  BasisComponent
@@ -7,6 +6,3 @@
 //
 
 import Foundation
-extension UITableView {
-    
-}
