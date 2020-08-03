@@ -7,5 +7,7 @@
 
 import Foundation
 extension UIColor {
-    
+    func test() {
+        print("hello world")
+    }
 }
