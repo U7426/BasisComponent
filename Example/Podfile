@@ -1,5 +1,5 @@
 use_frameworks!
-
+platform :ios, '10.0'
 target 'BasisComponent_Example' do
   pod 'BasisComponent', :path => '../'
 
