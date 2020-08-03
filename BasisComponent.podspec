@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.1.5'
+  s.version          = '0.1.7'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'U7426' => 'u7426fenglongfei@163.com' }
-  s.source           = { :git => 'https://github.com/CocoaPods/Specs.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/U7426/BasisComponent.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
