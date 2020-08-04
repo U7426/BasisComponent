@@ -8,38 +8,23 @@
 
 import Foundation
 import HandyJSON
-public protocol NetDataType {
+public protocol NetDataType:HandyJSON {
     
-    associatedtype T
+    ///服务端返回的json中的data 要转换的model
+    associatedtype Element
     
-    var code : Int? { get set }
-    
-    var message : String? { get set }
-    
-    var data : T? { get set }
-    
-    var items : T? { get set }
-    
+    ///业务是否成功
     func isSuccess() -> Bool
+    
+    /// 业务data
+    func netData() -> Element?
+    
+    /// code码
+    func netCode() -> Int?
+    
+    /// 服务端提示信息
+    func netMessage() -> String?
     
 }
 
-public class AnyNetData<R>: NetDataType,HandyJSON {
-        
-    public typealias T = R
-    
-    public var code: Int?
-    
-    public var message: String?
-    
-    public var data: R?
-        
-    public var items : R?
-    
-    public func isSuccess() -> Bool {
-        return code == 200
-    }
-    
-    required public init() {}
-}
 

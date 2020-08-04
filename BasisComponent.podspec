@@ -42,4 +42,5 @@ TODO: Add long description of the pod here.
    s.dependency 'RxCocoa', '~> 5'
    s.dependency 'Alamofire', '~> 5.2'
    s.dependency 'HandyJSON', '~> 5.0.1'
+   s.dependency 'SwifterSwift'
 end

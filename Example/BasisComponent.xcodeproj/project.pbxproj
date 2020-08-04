@@ -14,6 +14,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C856F9E824D902AA008F5288 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9E724D902AA008F5288 /* Const.swift */; };
+		C856F9EC24D92B2D008F5288 /* AnyNetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9EB24D92B2D008F5288 /* AnyNetData.swift */; };
+		C856F9F124D94073008F5288 /* NetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9F024D94073008F5288 /* NetWorkViewController.swift */; };
 		CB33B62F7420C56A154E9C37 /* Pods_BasisComponent_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C925CA642C7B04B1869F43A /* Pods_BasisComponent_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,9 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		85D272819963357FBDC92BA9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C4CB871C950C8D17769A779D /* Pods-BasisComponent_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasisComponent_Tests.release.xcconfig"; path = "Target Support Files/Pods-BasisComponent_Tests/Pods-BasisComponent_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C856F9E724D902AA008F5288 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		C856F9EB24D92B2D008F5288 /* AnyNetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNetData.swift; sourceTree = "<group>"; };
+		C856F9F024D94073008F5288 /* NetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkViewController.swift; sourceTree = "<group>"; };
 		CC3BBBE54ED966CF562E3019 /* Pods_BasisComponent_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasisComponent_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF00CFC51E9875FEA5703587 /* Pods-BasisComponent_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasisComponent_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BasisComponent_Tests/Pods-BasisComponent_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +110,9 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				C856F9F024D94073008F5288 /* NetWorkViewController.swift */,
+				C856F9EB24D92B2D008F5288 /* AnyNetData.swift */,
+				C856F9E724D902AA008F5288 /* Const.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -275,6 +284,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -284,6 +294,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -343,6 +354,9 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C856F9EC24D92B2D008F5288 /* AnyNetData.swift in Sources */,
+				C856F9F124D94073008F5288 /* NetWorkViewController.swift in Sources */,
+				C856F9E824D902AA008F5288 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
