@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
