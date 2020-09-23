@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,12 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'BasisComponent/Classes/**/*'
+  s.source_files =
+  'KDBasisComponents/Classes/Common/*.swift',
+  'KDBasisComponents/Classes/Net/*',
+  'KDBasisComponents/Classes/Extension/*.swift',
+  'KDBasisComponents/Classes/Public/*.swift',
+  'KDBasisComponents/Classes/Mediator/*.swift'
   
   # s.resource_bundles = {
   #   'BasisComponent' => ['BasisComponent/Assets/*.png']
@@ -43,4 +48,9 @@ TODO: Add long description of the pod here.
    s.dependency 'Alamofire', '~> 5.2'
    s.dependency 'HandyJSON', '~> 5.0.1'
    s.dependency 'SwifterSwift'
+   s.dependency 'SnapKit', '~> 5.0.0'
+   s.dependency 'MJRefresh'
+   s.dependency 'Kingfisher'
+   s.dependency 'FDFullscreenPopGesture'
+   s.dependency 'MBProgressHUD'
 end

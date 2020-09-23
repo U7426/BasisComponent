@@ -10,7 +10,7 @@ import Alamofire
 import HandyJSON
 import RxCocoa
 import RxSwift
-typealias JsonType = [NSString : Any]
+public typealias JsonType = [String : Any]
 public enum NetApiError:Error {
     case formatError //格式错误
     case operationError (code:Int,message:String) //业务解析失败
@@ -19,7 +19,7 @@ public enum NetApiError:Error {
 public class NetToolClient : ReactiveCompatible {
     public var method = HTTPMethod.post
     
-    public var baseUrl =  "https://api.github.com/search/repositories?q="
+    public var baseUrl =  NetToolClient.configuration.baseUrl
     
     public var path : String!
     
@@ -28,16 +28,22 @@ public class NetToolClient : ReactiveCompatible {
     ///是否自动展示错误
     public var autoShowError : Bool = true
     
-    /// header
-    fileprivate var headers: HTTPHeaders? = [:]
+    /// 请求配置信息
+    static var configuration : NetConfigurationType.Type!
     
-    public init() {
-        
+    /// header
+    fileprivate var headers: HTTPHeaders? = HTTPHeaders(NetToolClient.configuration.header)
+    
+    public init() {}
+    
+    //APP入口调用一次，设置全局网络请求配置
+    public static func configuration(_ configuration : NetConfigurationType.Type){
+        self.configuration = configuration
     }
 }
 ///Normal Methord
-extension NetToolClient {
-    public func request<T>(_ DataType: T.Type, result: ((Result<T>)->())?) -> () where T : NetDataType{
+public extension NetToolClient {
+    func request<T>(_ DataType: T.Type, result: ((Result<T>)->())?) -> () where T : NetDataType{
         AF.request(self.baseUrl + self.path, method: self.method, parameters: self.parameters, encoding:URLEncoding.default , headers: self.headers).validate().responseJSON(completionHandler: { (respondse) in
             switch respondse.result {
             case .success(let value):
@@ -51,7 +57,7 @@ extension NetToolClient {
                 }
                 if !netData.isSuccess() {
                     if self.autoShowError {
-                        print("展示错误")
+                        HUD.showHudTip(tipString: netData.netMessage())
                     }
                     result?(.failure(NetApiError.operationError(code: netData.netCode() ?? -200, message: netData.netMessage() ?? "无错误信息")))
                     return
@@ -62,10 +68,49 @@ extension NetToolClient {
             }
         })
     }
+    
+    /// 图片上传
+    /// - Parameters:
+    ///   - images: 图片数组
+    ///   - name: 图片名
+    ///   - result: 回调
+    ///   - progress: 进度
+    /// - Returns: void
+    func uploadImages(images:[UIImage?],name:String,result:((Result<JsonType>)->())?,progress:((Double)->())?){
+        let request = AF.upload(multipartFormData: { (multipartFormData) in
+            for (_,image) in images.enumerated() {
+                if let image = image {
+                    multipartFormData.append(image.compressedData()!, withName: name, fileName: name + ".jpeg", mimeType: "image/jpeg")
+                }
+            }
+            if let params = self.parameters {
+                for (key, value) in params {
+                    multipartFormData.append(String("\(value)").data(using: String.Encoding.utf8) ?? Data(), withName: key)
+                }
+            }
+        }, to: self.baseUrl + self.path, headers: self.headers)
+        request.uploadProgress { (uploadProgress) in
+            progress?(uploadProgress.fractionCompleted)
+        }
+        request.responseJSON { (response) in
+            switch response.result {
+            case .success(let json):
+                do {
+                    guard let json:[String:Any] = json as? [String:Any] else {
+                        result?(.failure(NetApiError.formatError))
+                        return
+                    }
+                    result?(.success(json))
+                }
+            case .failure(_):
+                result?(.failure(NetApiError.unknownError))
+            }
+        }
+    }
 }
 ///Rx Method
-extension Reactive where Base : NetToolClient{
-    public func request<T>(_ DataType : T.Type) -> Observable<T> where T : NetDataType{
+public extension Reactive where Base : NetToolClient{
+    func request<T>(_ DataType : T.Type) -> Observable<T> where T : NetDataType{
         return Observable.create({ observer in
             AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseJSON(completionHandler: { (respondse) in
                 switch respondse.result {
