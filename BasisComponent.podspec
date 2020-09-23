@@ -31,7 +31,6 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '10.0'
 
   s.source_files =
-  'KDBasisComponents/Classes/Common/*.swift',
   'KDBasisComponents/Classes/Net/*',
   'KDBasisComponents/Classes/Extension/*.swift',
   'KDBasisComponents/Classes/Public/*.swift',
