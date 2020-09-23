@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.2.3'
+  s.version          = '0.2.4'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
@@ -31,10 +31,10 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '10.0'
 
   s.source_files =
-  'KDBasisComponents/Classes/Net/*',
-  'KDBasisComponents/Classes/Extension/*.swift',
-  'KDBasisComponents/Classes/Public/*.swift',
-  'KDBasisComponents/Classes/Mediator/*.swift'
+  'BasisComponent/Classes/Net/*',
+  'BasisComponent/Classes/Extension/*',
+  'BasisComponent/Classes/Public/*',
+  'BasisComponent/Classes/Mediator/*'
   
   # s.resource_bundles = {
   #   'BasisComponent' => ['BasisComponent/Assets/*.png']
