@@ -12,6 +12,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 
 #### Mediator
+
 ``` Swift
 路由的基本实现:
 /// 路由调用组件库
@@ -59,6 +60,46 @@ Mediator.default.perform("BasisComponent", functionKey: "test", params: [:]) { r
    print(result ?? "Complete")
 }
 ```
+#### Net
+
+```Swift
+class User: HandyJSON {
+    var name : String?
+    required init() {}
+}
+
+let api = NetToolClient()
+api.path = "url"
+api.parameters = ["a":1]
+
+//example1 : 普通的网络请求(返回Json)
+api.request { (result:Result<JsonType>) in
+    if result.isSuccess {
+        print(result.value?["name"] ?? "")
+    }
+    else{
+        print(result.error!)
+    }
+}
+
+//example2 : 普通的网络请求(返回User)
+api.request { (result:Result<User>) in
+    if result.isSuccess {
+        print(result.value?.name ?? "")
+    }
+    else{
+        print(result.error!)
+    }
+}
+
+//example3: RX网络请求(返回 Observeable<User>)
+let observable = api.rx.request() as Observable<User>
+observable.subscribe(onNext: { user in
+    print("\(user.name ?? "")")
+}).disposed(by: disposeBag)
+
+```
+
 ## Requirements
 
 ## Installation
