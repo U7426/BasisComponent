@@ -17,6 +17,7 @@
 		C856F9E824D902AA008F5288 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9E724D902AA008F5288 /* Const.swift */; };
 		C856F9EC24D92B2D008F5288 /* AnyNetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9EB24D92B2D008F5288 /* AnyNetData.swift */; };
 		C856F9F124D94073008F5288 /* NetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856F9F024D94073008F5288 /* NetWorkViewController.swift */; };
+		C8E2432C2540293F007AE993 /* NetToolClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E2432B2540293F007AE993 /* NetToolClient.swift */; };
 		CB33B62F7420C56A154E9C37 /* Pods_BasisComponent_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C925CA642C7B04B1869F43A /* Pods_BasisComponent_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		C856F9E724D902AA008F5288 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		C856F9EB24D92B2D008F5288 /* AnyNetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNetData.swift; sourceTree = "<group>"; };
 		C856F9F024D94073008F5288 /* NetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkViewController.swift; sourceTree = "<group>"; };
+		C8E2432B2540293F007AE993 /* NetToolClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetToolClient.swift; sourceTree = "<group>"; };
 		CC3BBBE54ED966CF562E3019 /* Pods_BasisComponent_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasisComponent_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF00CFC51E9875FEA5703587 /* Pods-BasisComponent_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasisComponent_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BasisComponent_Tests/Pods-BasisComponent_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				C856F9F024D94073008F5288 /* NetWorkViewController.swift */,
 				C856F9EB24D92B2D008F5288 /* AnyNetData.swift */,
+				C8E2432B2540293F007AE993 /* NetToolClient.swift */,
 				C856F9E724D902AA008F5288 /* Const.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -366,6 +369,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C856F9EC24D92B2D008F5288 /* AnyNetData.swift in Sources */,
 				C856F9F124D94073008F5288 /* NetWorkViewController.swift in Sources */,
+				C8E2432C2540293F007AE993 /* NetToolClient.swift in Sources */,
 				C856F9E824D902AA008F5288 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

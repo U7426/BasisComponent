@@ -43,7 +43,7 @@ public class NetToolClient : ReactiveCompatible {
 }
 ///Normal Methord
 public extension NetToolClient {
-    func request<T>(_ DataType: T.Type, result: ((Result<T>)->())?) -> () where T : NetDataType{
+    func startRequest<T>(_ DataType: T.Type, result: ((Result<T>)->())?) -> () where T : NetDataType{
         AF.request(self.baseUrl + self.path, method: self.method, parameters: self.parameters, encoding:URLEncoding.default , headers: self.headers).validate().responseJSON(completionHandler: { (respondse) in
             switch respondse.result {
             case .success(let value):
@@ -110,7 +110,7 @@ public extension NetToolClient {
 }
 ///Rx Method
 public extension Reactive where Base : NetToolClient{
-    func request<T>(_ DataType : T.Type) -> Observable<T> where T : NetDataType{
+    func startRequest<T>(_ DataType : T.Type) -> Observable<T> where T : NetDataType{
         return Observable.create({ observer in
             AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseJSON(completionHandler: { (respondse) in
                 switch respondse.result {

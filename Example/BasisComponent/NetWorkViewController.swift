@@ -20,25 +20,34 @@ class NetWorkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //example 1 : 普通的网络请求
-        let api = NetToolClient()
-        api.path = "url"
-        api.parameters = ["a":1]
-        api.request(AnyNetData<User>.self) { (result) in
-            if result.isSuccess {
-                print(result.value?.data?.name ?? "")
-            }
-            else{
-                print(result.error!)
-            }
-        }
-        //example 2 : RX网络请求
-        let rxApi = NetToolClient()
-        rxApi.path = "url"
-        rxApi.parameters = ["a":1]
-        rxApi.rx.request(AnyNetData<User>.self).subscribe(onNext: { value in
-            print(value.data?.name ?? "")
-            }).disposed(by: disposeBag)
+let api = NetToolClient()
+api.path = "url"
+api.parameters = ["a":1]
+
+//example1 : 普通的网络请求(返回Json)
+api.request { (result:Result<JsonType>) in
+    if result.isSuccess {
+        print(result.value?["name"] ?? "")
+    }
+    else{
+        print(result.error!)
+    }
+}
+//example2 : 普通的网络请求(返回Model)
+api.request { (result:Result<User>) in
+    if result.isSuccess {
+        print(result.value?.name ?? "")
+    }
+    else{
+        print(result.error!)
+    }
+}
+//example3: RX网络请求(返回 Observeable<User>)
+let observable = api.rx.request() as Observable<User>
+observable.subscribe(onNext: { user in
+    print("\(user.name ?? "")")
+}).disposed(by: disposeBag)
+        
         
     }
 }
