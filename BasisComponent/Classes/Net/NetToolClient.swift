@@ -57,7 +57,7 @@ public extension NetToolClient {
                 }
                 if !netData.isSuccess() {
                     if self.autoShowError {
-                        HUD.showHudTip(tipString: netData.netMessage())
+                        _ = HUD.showHudTip(tipString: netData.netMessage())
                     }
                     result?(.failure(NetApiError.operationError(code: netData.netCode() ?? -200, message: netData.netMessage() ?? "无错误信息")))
                     return
@@ -125,6 +125,28 @@ public extension Reactive where Base : NetToolClient{
                     }
                     if !netData.isSuccess() {
                         observer.onError(NetApiError.operationError(code: netData.netCode() ?? -200, message: netData.netMessage() ?? "无错误信息"))
+                    }
+                    observer.onNext(netData)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            })
+            return Disposables.create()
+        })
+    }
+    func startRequest<T>(_ DataType : T.Type) -> Observable<T> where T : HandyJSON{
+        return Observable.create({ observer in
+            AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseJSON(completionHandler: { (respondse) in
+                switch respondse.result {
+                case .success(let value):
+                    guard let json:[String:Any] = value as? [String:Any] else {
+                        observer.onError(NetApiError.formatError)
+                        return
+                    }
+                    guard let netData = DataType.deserialize(from: json) else {
+                        observer.onError(NetApiError.formatError)
+                        return
                     }
                     observer.onNext(netData)
                     observer.onCompleted()

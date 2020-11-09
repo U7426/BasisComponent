@@ -11,9 +11,6 @@ public protocol NetConfigurationType{
     
     /// baseUrl
     static var baseUrl : String { set get }
-
-    /// 加密文件公钥路径
-    static var encryptedPublicKeyPath : String? { get }
     
     /// 请求头
     static var header : [String : String] { set get }

@@ -29,5 +29,5 @@ public extension UINavigationBar {
     static let height = 44 + UIScreen.safeTopMargin
 }
 public extension UITabBar {
-    static let height =  UIScreen.safeBottomMargin
+    static let height =  49 + UIScreen.safeBottomMargin
 }

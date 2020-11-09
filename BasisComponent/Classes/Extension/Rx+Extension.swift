@@ -14,7 +14,7 @@ public extension ObservableConvertibleType{
      func asDriverJustShowErrorMessage()->Driver<Element>{
         return self.asDriver(onErrorRecover: {
             if  let error = $0 as? NetApiError {
-                HUD.showHudTip(tipString: error.description)
+                _ = HUD.showHudTip(tipString: error.description)
             }
             return Driver.empty()
         })
