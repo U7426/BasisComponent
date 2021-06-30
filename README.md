@@ -11,13 +11,15 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Description
 
-1、为部分系统控件添加Reactive扩展
+1、常用的扩展，工具类等
 
-2、基于CTMediator的Swift版本，加以改造
+2、为部分系统控件添加Reactive扩展
 
-3、为一些三方控件添加Reactive扩展，Refresh，Hud 等
+3、基于CTMediator的Swift版本，加以改造
 
-4、将Alamofire请求转换为Observable，并带自动解析
+4、为一些三方控件添加Reactive扩展，Refresh，Hud 等
+
+5、将Alamofire请求转换为Observable，并带自动解析
 
 #### Mediator
 
