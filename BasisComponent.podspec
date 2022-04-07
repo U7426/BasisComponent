@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.2.6'
+  s.version          = '0.2.7'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
@@ -42,12 +42,12 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-   s.dependency 'RxSwift', '~> 5'
-   s.dependency 'RxCocoa', '~> 5'
-   s.dependency 'Alamofire', '~> 5.2'
-   s.dependency 'HandyJSON', '~> 5.0.1'
+   s.dependency 'RxSwift'
+   s.dependency 'RxCocoa'
+   s.dependency 'Alamofire'
+   s.dependency 'HandyJSON'
    s.dependency 'SwifterSwift'
-   s.dependency 'SnapKit', '~> 5.0.0'
+   s.dependency 'SnapKit'
    s.dependency 'MJRefresh'
    s.dependency 'Kingfisher'
    s.dependency 'FDFullscreenPopGesture'
