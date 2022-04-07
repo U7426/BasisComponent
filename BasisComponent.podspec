@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BasisComponent'
-  s.version          = '0.2.7'
+  s.version          = '0.2.8'
   s.summary          = '冯龙飞基础库'
 
 # This description is used to generate tags and improve search results.
@@ -49,7 +49,7 @@ TODO: Add long description of the pod here.
    s.dependency 'SwifterSwift'
    s.dependency 'SnapKit'
    s.dependency 'MJRefresh'
-   s.dependency 'Kingfisher'
+   s.dependency 'Kingfisher', '4.10.1'
    s.dependency 'FDFullscreenPopGesture'
    s.dependency 'MBProgressHUD'
 end
