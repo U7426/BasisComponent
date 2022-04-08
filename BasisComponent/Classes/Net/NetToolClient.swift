@@ -11,10 +11,30 @@ import HandyJSON
 import RxCocoa
 import RxSwift
 public typealias JsonType = [String : Any]
-public enum NetApiError:Error {
+public enum NetApiError: Error {
     case formatError //格式错误
     case operationError (code:Int,message:String) //业务解析失败
     case unknownError //未知类型错误
+    
+    public func code() -> Int? {
+        switch self {
+        case .operationError(code: let code, message: _):
+            return code
+            
+        default:
+            return nil
+        }
+    }
+    public func message() -> String? {
+        switch self {
+        case .formatError:
+            return "数据格式错误"
+        case .operationError(code: _, message: let message):
+            return message
+        case .unknownError:
+            return "未知错误"
+        }
+    }
 }
 public class NetToolClient : ReactiveCompatible {
     public var method = HTTPMethod.post
@@ -44,14 +64,10 @@ public class NetToolClient : ReactiveCompatible {
 ///Normal Methord
 public extension NetToolClient {
     func startRequest<T>(_ DataType: T.Type, result: ((Result<T>)->())?) -> () where T : NetDataType{
-        AF.request(self.baseUrl + self.path, method: self.method, parameters: self.parameters, encoding:URLEncoding.default , headers: self.headers).validate().responseJSON(completionHandler: { (respondse) in
+        AF.request(self.baseUrl + self.path, method: self.method, parameters: self.parameters, encoding:URLEncoding.default , headers: self.headers).validate().responseString(completionHandler: { (respondse) in
             switch respondse.result {
             case .success(let value):
-                guard let json:[String:Any] = value as? [String:Any] else {
-                    result?(.failure(NetApiError.formatError))
-                    return
-                }
-                guard let netData = DataType.deserialize(from: json) else {
+                guard let netData = DataType.deserialize(from: value) else {
                     result?(.failure(NetApiError.formatError))
                     return
                 }
@@ -92,15 +108,14 @@ public extension NetToolClient {
         request.uploadProgress { (uploadProgress) in
             progress?(uploadProgress.fractionCompleted)
         }
-        request.responseJSON { (response) in
+        request.responseData { (response) in
             switch response.result {
-            case .success(let json):
-                do {
-                    guard let json:[String:Any] = json as? [String:Any] else {
-                        result?(.failure(NetApiError.formatError))
-                        return
-                    }
+            case .success(let data):
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? JsonType, let json = json  {
                     result?(.success(json))
+                }
+                else {
+                    result?(.failure(NetApiError.formatError))
                 }
             case .failure(_):
                 result?(.failure(NetApiError.unknownError))
@@ -112,14 +127,10 @@ public extension NetToolClient {
 public extension Reactive where Base : NetToolClient{
     func startRequest<T>(_ DataType : T.Type) -> Observable<T> where T : NetDataType{
         return Observable.create({ observer in
-            AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseJSON(completionHandler: { (respondse) in
+            AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseString(completionHandler: { (respondse) in
                 switch respondse.result {
                 case .success(let value):
-                    guard let json:[String:Any] = value as? [String:Any] else {
-                        observer.onError(NetApiError.formatError)
-                        return
-                    }
-                    guard let netData = DataType.deserialize(from: json) else {
+                    guard let netData = DataType.deserialize(from: value) else {
                         observer.onError(NetApiError.formatError)
                         return
                     }
@@ -137,14 +148,10 @@ public extension Reactive where Base : NetToolClient{
     }
     func startRequest<T>(_ DataType : T.Type) -> Observable<T> where T : HandyJSON{
         return Observable.create({ observer in
-            AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseJSON(completionHandler: { (respondse) in
+            AF.request(self.base.baseUrl + self.base.path, method: self.base.method, parameters: self.base.parameters, encoding:URLEncoding.default , headers: self.base.headers).validate().responseString(completionHandler: { (respondse) in
                 switch respondse.result {
                 case .success(let value):
-                    guard let json:[String:Any] = value as? [String:Any] else {
-                        observer.onError(NetApiError.formatError)
-                        return
-                    }
-                    guard let netData = DataType.deserialize(from: json) else {
+                    guard let netData = DataType.deserialize(from: value) else {
                         observer.onError(NetApiError.formatError)
                         return
                     }

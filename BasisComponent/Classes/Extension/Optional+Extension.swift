@@ -9,6 +9,11 @@
 import Foundation
 public extension Optional where Wrapped == String {
     func orEmpty() -> String {
-        return self ?? ""
+        switch self {
+        case .none:
+            return ""
+        case .some(let wrapped):
+            return wrapped
+        }
     }
 }
